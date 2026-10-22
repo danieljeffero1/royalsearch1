@@ -3,437 +3,300 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RoyalSearch1 | AI Ad Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoyalSearch1 | Commercial & Movie Studio</title>
 <style>
-:root{--navy:#101a35;--blue:#3157d5;--gold:#f2bf52;--ink:#19233b;--muted:#65718a;--bg:#f3f5fb;--line:#dce2ef}
+:root{--navy:#101d39;--blue:#2457c5;--gold:#f0b84b;--paper:#f4f6fb;--ink:#18243b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px Arial,sans-serif}
-header{background:var(--navy);color:white;padding:22px max(18px,calc((100% - 1120px)/2))}
-.brand{font-size:29px;font-weight:800;color:var(--gold)}
-header p{margin:8px 0;color:#dbe4ff}
-nav{background:white;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:12px;border-bottom:1px solid var(--line)}
-nav a{color:#2447a5;text-decoration:none;font-weight:bold;padding:8px 10px}
-main{max-width:1120px;margin:auto;padding:18px}
-.hero{background:linear-gradient(120deg,#3157d5,#101a35);color:white;padding:30px 22px;border-radius:18px}
-.hero h1{font-size:clamp(27px,4vw,42px);margin:0 0 12px}
-.hero p{line-height:1.6;max-width:760px}
-.pill{display:inline-block;background:#ffffff20;padding:7px 11px;border-radius:20px;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
-.card{background:white;padding:20px;border-radius:14px;margin:16px 0;box-shadow:0 3px 15px #18284b0b;border:1px solid #e8ecf5}
-h2{color:#2448aa;margin-top:0}
-h3{margin-bottom:8px}
-label{font-weight:bold;display:block;margin-top:12px;font-size:14px}
-input,textarea,select{width:100%;padding:12px;margin-top:6px;border:1px solid #cbd3e3;border-radius:8px;font:inherit;background:white;color:var(--ink)}
-textarea{min-height:90px;resize:vertical}
-button,.button{border:0;border-radius:8px;background:var(--blue);color:white;padding:12px 16px;margin:8px 5px 0 0;font-weight:bold;cursor:pointer;font-size:14px;text-decoration:none;display:inline-block}
-button:hover,.button:hover{background:#203fa9}
-.secondary{background:#e9edfb;color:#2448aa}
-.secondary:hover{background:#dce4ff}
-.result{background:#f5f7ff;border:1px solid #dfe5fb;padding:15px;border-radius:10px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;min-height:48px}
-.hint{font-size:13px;color:var(--muted);line-height:1.5}
-.notice{padding:14px;background:#fff4d9;border:1px solid #f3dfab;border-radius:10px;line-height:1.5}
-.success{background:#e9f8ef;border:1px solid #bfe7ce;padding:12px;border-radius:8px}
-img.preview{max-width:100%;max-height:300px;display:block;margin:14px auto;border-radius:10px}
-section{scroll-margin-top:16px}
-footer{margin-top:28px;background:var(--navy);color:#dbe4ff;text-align:center;padding:24px;line-height:1.7}
-a{overflow-wrap:anywhere}
-@media(max-width:500px){main{padding:12px}.card{padding:15px}.hero{padding:23px 16px}}
+body{margin:0;font-family:Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(120deg,#101d39,#2457c5);color:white;padding:26px 18px}
+.wrap{max-width:1100px;margin:auto}
+.brand{font-size:30px;font-weight:800;letter-spacing:.5px}
+header p{margin:5px 0;color:#e1e9ff}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+nav button{background:#fff;color:var(--navy);border:0;border-radius:8px;padding:12px 14px;font-weight:bold;cursor:pointer}
+nav button.active{background:var(--gold);color:#18243b}
+main{max-width:1100px;margin:22px auto;padding:0 14px}
+.panel{display:none}.panel.active{display:block}
+.card{background:white;border:1px solid #dfe5f0;border-radius:13px;padding:20px;margin-bottom:18px;box-shadow:0 3px 12px #16274a0b}
+h1{font-size:25px;margin:0 0 8px}h2{font-size:20px;margin:0 0 12px}h3{font-size:16px;margin:15px 0 7px}
+p.help{color:#5a6880;font-size:14px;margin-top:0}
+label{display:block;font-weight:bold;margin:12px 0 5px}
+input,textarea,select{width:100%;padding:11px;border:1px solid #c8d1e1;border-radius:7px;font:inherit;background:#fff}
+textarea{min-height:95px;resize:vertical}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.btn{border:0;border-radius:8px;background:var(--blue);color:white;padding:12px 16px;font-weight:bold;cursor:pointer;margin:8px 6px 0 0}
+.btn.secondary{background:#e7edf9;color:#17366f}
+.btn.gold{background:var(--gold);color:#18243b}
+.output{white-space:pre-wrap;background:#f7f9fd;border:1px solid #dce4f1;border-radius:8px;padding:15px;min-height:65px;overflow-wrap:anywhere}
+.note{background:#fff6df;border-left:4px solid var(--gold);padding:12px;margin:12px 0;border-radius:5px}
+.small{font-size:13px;color:#637089}
+.preview{width:100%;max-width:100%;border-radius:8px;background:#111;display:block}
+footer{text-align:center;color:#65718a;padding:25px}
+a{color:#2457c5}
+hr{border:0;border-top:1px solid #e2e7f0;margin:18px 0}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.brand{font-size:25px}nav button{flex:1}}
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">RoyalSearch1</div>
+ <div class="wrap">
+  <div class="brand">ROYALSEARCH1</div>
   <p>Your Business Search, Advertising & Creative Studio</p>
-  <span class="pill">PRODUCT ADS · COMMERCIALS · BUSINESS TOOLS</span>
+  <nav>
+   <button class="active" data-tab="commercial">Commercial Maker</button>
+   <button data-tab="movie">Movie Maker</button>
+   <button data-tab="video">Video Builder</button>
+   <button data-tab="business">Business Tools</button>
+  </nav>
+ </div>
 </header>
 
-<nav>
-  <a href="#studio">Product Ad Studio</a>
-  <a href="#storyboard">Video Storyboard</a>
-  <a href="#assistant">Business Assistant</a>
-  <a href="#profit">Profit Calculator</a>
-  <a href="#resources">Business Resources</a>
-</nav>
-
 <main>
-<section class="hero">
-  <h1>Turn Your Product Into an Advertising Campaign</h1>
-  <p>Create product promotions, commercial scripts, voiceover copy and video scene plans from one workspace. Designed for online stores, small businesses, entrepreneurs and creators.</p>
-  <a class="button" href="#studio">Create an Ad</a>
-  <a class="button secondary" href="#storyboard">Plan a Video</a>
-</section>
-
-<section class="card" id="studio">
-  <h2>1. Product Ad Studio</h2>
-  <p>Enter product information or a business website, upload a photo, and create a customized advertising package.</p>
-
-  <label for="productUrl">Product or business website URL</label>
-  <input id="productUrl" type="url" placeholder="https://your-store.com/product">
-
-  <p class="hint">This version stores the link for your ad brief. It does not automatically import website information.</p>
-
+<section id="commercial" class="panel active">
+ <div class="card">
+  <h1>Affiliate Commercial Maker</h1>
+  <p class="help">Create a product advertisement script, promotional captions, and a scene-by-scene commercial plan.</p>
   <div class="grid">
-    <div>
-      <label for="productName">Product or business name *</label>
-      <input id="productName" placeholder="Example: Royal Glow Skincare">
-    </div>
-    <div>
-      <label for="productType">Product category</label>
-      <select id="productType">
-        <option>Beauty and skincare</option>
-        <option>Clothing and fashion</option>
-        <option>Food and beverage</option>
-        <option>Home and lifestyle</option>
-        <option>Technology</option>
-        <option>Automotive</option>
-        <option>Professional services</option>
-        <option>Real estate</option>
-        <option>Other</option>
-      </select>
-    </div>
+   <div><label for="product">Product or business name</label><input id="product" placeholder="Example: Royal Cleaning Solutions"></div>
+   <div><label for="affiliate">Affiliate or product URL</label><input id="affiliate" type="url" placeholder="https://example.com/product"></div>
+   <div><label for="audience">Target audience</label><input id="audience" placeholder="Example: homeowners and busy families"></div>
+   <div><label for="platform">Advertising platform</label><select id="platform"><option>YouTube</option><option>TikTok</option><option>Instagram and Facebook</option><option>Website advertisement</option><option>Multiple platforms</option></select></div>
+   <div><label for="duration">Commercial length</label><select id="duration"><option value="15">15 seconds</option><option value="30" selected>30 seconds</option><option value="60">60 seconds</option></select></div>
+   <div><label for="tone">Advertising style</label><select id="tone"><option>Professional</option><option>Exciting and energetic</option><option>Luxury</option><option>Funny</option><option>Inspirational</option><option>Cinematic</option></select></div>
   </div>
+  <label for="details">Product details and genuine benefits</label>
+  <textarea id="details" placeholder="Describe what it is, what it does, its price if known, and the benefits you can verify."></textarea>
+  <label for="offer">Call to action</label><input id="offer" value="Learn more today">
+  <label for="adimages">Upload product photos or scene images</label><input id="adimages" type="file" accept="image/*" multiple>
+  <p class="small">Images are processed in your browser for this tool; they are not uploaded to an AI service. A URL is saved as text and is not automatically imported.</p>
+  <button class="btn gold" id="makeAd">Create Commercial Package</button>
+  <button class="btn secondary" id="copyAd">Copy Package</button>
+  <h3>Your commercial script and scene plan</h3>
+  <div id="adOutput" class="output">Your generated advertising package will appear here.</div>
+ </div>
+</section>
 
-  <label for="description">Describe the product, service or offer *</label>
-  <textarea id="description" placeholder="What are you selling? What makes it valuable? Include the price or special offer if known."></textarea>
-
-  <label for="photo">Upload a product photo (optional)</label>
-  <input id="photo" type="file" accept="image/*">
-  <img id="photoPreview" class="preview" alt="Product preview" hidden>
-  <p class="hint">The photo preview stays in this browser. The image is not uploaded to an AI service.</p>
-
+<section id="movie" class="panel">
+ <div class="card">
+  <h1>Movie Maker & Story Studio</h1>
+  <p class="help">Develop a story concept, dialogue outline, trailer script, and visual scene plan.</p>
+  <label for="movieTitle">Movie title</label><input id="movieTitle" placeholder="Give your movie a title">
   <div class="grid">
-    <div>
-      <label for="audience">Target audience</label>
-      <input id="audience" placeholder="Example: adults shopping for skincare">
-    </div>
-    <div>
-      <label for="platform">Where will you advertise?</label>
-      <select id="platform">
-        <option>TikTok</option>
-        <option>Instagram Reels</option>
-        <option>Facebook</option>
-        <option>YouTube</option>
-        <option>Online store or website</option>
-        <option>Multiple platforms</option>
-      </select>
-    </div>
-    <div>
-      <label for="adStyle">Advertising style</label>
-      <select id="adStyle">
-        <option>Premium and cinematic</option>
-        <option>Clean and professional</option>
-        <option>Energetic and attention-grabbing</option>
-        <option>Friendly and relatable</option>
-        <option>Luxury brand</option>
-        <option>Product demonstration</option>
-      </select>
-    </div>
-    <div>
-      <label for="adLength">Commercial length</label>
-      <select id="adLength">
-        <option value="15">15 seconds</option>
-        <option value="30">30 seconds</option>
-        <option value="60">60 seconds</option>
-      </select>
-    </div>
+   <div><label for="genre">Genre</label><select id="genre"><option>Drama</option><option>Action and adventure</option><option>Science fiction</option><option>Fantasy</option><option>Comedy</option><option>Thriller</option><option>Documentary</option><option>Romance</option></select></div>
+   <div><label for="movieType">Project type</label><select id="movieType"><option>Movie trailer</option><option>Short film</option><option>Feature-film outline</option><option>Web series episode</option><option>Documentary outline</option></select></div>
   </div>
-
-  <button onclick="createAd()">Create Advertising Package</button>
-  <button class="secondary" onclick="clearAd()">Clear Form</button>
-
-  <div id="adResult" class="result" aria-live="polite">Your advertising package will appear here.</div>
-  <button onclick="copyResult('adResult')">Copy Ad Package</button>
-  <button class="secondary" onclick="saveResult('adResult','royalsearch1-ad-package.txt')">Save Text File</button>
-  <button class="secondary" onclick="sendToStoryboard()">Use Details in Video Storyboard</button>
+  <label for="story">Story idea</label><textarea id="story" placeholder="Who is the main character? What do they want? What problem or conflict do they face?"></textarea>
+  <label for="characters">Characters and dialogue ideas</label><textarea id="characters" placeholder="Describe the characters, their personalities, and any dialogue you want included."></textarea>
+  <label for="sceneCount">Number of scenes</label><select id="sceneCount"><option value="4">4 scenes</option><option value="6" selected>6 scenes</option><option value="10">10 scenes</option><option value="12">12 scenes</option></select>
+  <button class="btn gold" id="makeMovie">Build Story and Scene Plan</button>
+  <button class="btn secondary" id="copyMovie">Copy Movie Plan</button>
+  <h3>Movie development output</h3><div id="movieOutput" class="output">Your story and scene plan will appear here.</div>
+ </div>
 </section>
 
-<section class="card" id="storyboard">
-  <h2>2. Commercial Video & Film Storyboard</h2>
-  <p>Plan a product commercial, movie trailer, short film or longer production.</p>
-
-  <label for="filmTitle">Project title</label>
-  <input id="filmTitle" placeholder="Example: The Royal Glow Commercial">
-
-  <label for="filmIdea">Story or video concept *</label>
-  <textarea id="filmIdea" placeholder="Describe what viewers should see, feel and remember."></textarea>
-
+<section id="video" class="panel">
+ <div class="card">
+  <h1>Video Builder & Export Studio</h1>
+  <p class="help">Create a basic slideshow-style video using your own images and captions. This is a media assembly tool, not a generator of new AI footage.</p>
+  <label for="videoTitle">Video title</label><input id="videoTitle" value="My RoyalSearch1 Video">
+  <label for="videoImages">Select scene images</label><input id="videoImages" type="file" accept="image/*" multiple>
+  <p class="small">Choose images you own or are licensed to use. Select them in the order you want them to appear.</p>
+  <label for="captions">Scene captions (one caption per line, in image order)</label><textarea id="captions" placeholder="Scene 1 caption&#10;Scene 2 caption&#10;Scene 3 caption"></textarea>
   <div class="grid">
-    <div>
-      <label for="filmFormat">Production format</label>
-      <select id="filmFormat">
-        <option>Product commercial</option>
-        <option>Social media video ad</option>
-        <option>Movie trailer</option>
-        <option>Short film</option>
-        <option>Documentary</option>
-        <option>Long-form film planning</option>
-      </select>
-    </div>
-    <div>
-      <label for="filmMood">Visual mood</label>
-      <select id="filmMood">
-        <option>Cinematic and dramatic</option>
-        <option>Bright and uplifting</option>
-        <option>Luxury and elegant</option>
-        <option>Realistic and documentary-style</option>
-        <option>Funny and entertaining</option>
-        <option>Suspenseful</option>
-      </select>
-    </div>
+   <div><label for="sceneSeconds">Seconds per scene</label><select id="sceneSeconds"><option value="3">3 seconds</option><option value="5" selected>5 seconds</option><option value="8">8 seconds</option></select></div>
+   <div><label for="voiceText">Text for browser voiceover</label><select id="voiceText"><option value="captions">Read scene captions</option><option value="title">Read video title</option></select></div>
   </div>
-
-  <button onclick="createStoryboard()">Build Storyboard</button>
-  <div id="filmResult" class="result" aria-live="polite">Your scene-by-scene plan will appear here.</div>
-  <button onclick="copyResult('filmResult')">Copy Storyboard</button>
-  <button class="secondary" onclick="saveResult('filmResult','royalsearch1-storyboard.txt')">Save Storyboard</button>
-
-  <div class="notice">
-    <strong>Video generation status: Not connected yet.</strong>
-    This tool creates a written production plan. It does not render a finished video, synthesize a voice or generate AI footage yet.
-  </div>
+  <button class="btn gold" id="previewVideo">Preview Video</button>
+  <button class="btn" id="exportVideo">Create & Export Video</button>
+  <button class="btn secondary" id="speakVideo">Play Browser Voiceover</button>
+  <button class="btn secondary" id="stopVoice">Stop Voiceover</button>
+  <p id="videoStatus" class="small">Choose images to begin. Video export requires a browser that supports canvas recording.</p>
+  <canvas id="videoCanvas" class="preview" width="1280" height="720"></canvas>
+  <p class="small">The export is a basic WebM video. Voiceover is played separately and is not embedded in the exported video. Your browser may ask where to save the file.</p>
+ </div>
+ <div class="card">
+  <h2>How to use this studio</h2>
+  <ol>
+   <li>Create a script in Commercial Maker or a scene plan in Movie Maker.</li>
+   <li>Prepare or obtain the images you want to use.</li>
+   <li>Upload those images here and add matching captions.</li>
+   <li>Preview, then export your video.</li>
+  </ol>
+ </div>
 </section>
 
-<section class="card" id="assistant">
-  <h2>3. Business Marketing Assistant</h2>
-  <p>Use this guided planner to organize your next business task. This version uses built-in templates, not a live AI model.</p>
-  <label for="businessTask">What do you need help with?</label>
-  <textarea id="businessTask" placeholder="Example: Help me promote my cleaning business and find my first customers."></textarea>
-  <button onclick="businessHelp()">Create Action Plan</button>
-  <div id="businessResult" class="result" aria-live="polite">Your action plan will appear here.</div>
-  <button onclick="copyResult('businessResult')">Copy Action Plan</button>
-</section>
-
-<section class="card" id="profit">
-  <h2>4. Business Profit Calculator</h2>
-  <p>Estimate your profit before expenses such as taxes and overhead that you have not entered.</p>
+<section id="business" class="panel">
+ <div class="card">
+  <h1>Business Assistant & Profit Calculator</h1>
+  <p class="help">These built-in tools work without an external AI connection.</p>
+  <h2>Business planning prompts</h2>
+  <label for="businessIdea">Business idea or problem to solve</label><textarea id="businessIdea" placeholder="Describe your business, customers, services, and goal."></textarea>
+  <button class="btn gold" id="businessPlan">Create Business Planning Checklist</button>
+  <div id="businessOutput" class="output">Your business checklist will appear here.</div>
+  <hr>
+  <h2>Profit Calculator</h2>
   <div class="grid">
-    <div>
-      <label for="sales">Total sales ($)</label>
-      <input id="sales" type="number" min="0" step="0.01" placeholder="1000">
-    </div>
-    <div>
-      <label for="costs">Product or service costs ($)</label>
-      <input id="costs" type="number" min="0" step="0.01" placeholder="300">
-    </div>
-    <div>
-      <label for="overhead">Other expenses ($)</label>
-      <input id="overhead" type="number" min="0" step="0.01" placeholder="150">
-    </div>
+   <div><label for="revenue">Expected sales revenue ($)</label><input id="revenue" type="number" min="0" step=".01" value="1000"></div>
+   <div><label for="costs">Total costs and expenses ($)</label><input id="costs" type="number" min="0" step=".01" value="400"></div>
   </div>
-  <button onclick="calculateProfit()">Calculate Profit</button>
-  <div id="profitResult" class="result" aria-live="polite">Your estimated results will appear here.</div>
-</section>
-
-<section class="card" id="resources">
-  <h2>5. Business Resources</h2>
-  <p>Useful starting points for building and growing a business.</p>
+  <button class="btn" id="calculate">Calculate Profit</button>
+  <div id="profitOutput" class="output">Enter your numbers and calculate.</div>
+  <hr>
+  <h2>Business resources</h2>
   <ul>
-    <li><a href="https://www.sba.gov/" target="_blank" rel="noopener">U.S. Small Business Administration</a></li>
-    <li><a href="https://www.grants.gov/" target="_blank" rel="noopener">Federal grant opportunities</a></li>
-    <li><a href="https://www.score.org/" target="_blank" rel="noopener">SCORE business mentoring</a></li>
-    <li><a href="https://www.sosnc.gov/" target="_blank" rel="noopener">North Carolina Secretary of State</a></li>
-    <li><a href="https://duckduckgo.com/" target="_blank" rel="noopener">Search the web</a></li>
+   <li><a href="https://www.sba.gov/" target="_blank" rel="noopener">U.S. Small Business Administration</a></li>
+   <li><a href="https://www.grants.gov/" target="_blank" rel="noopener">Grants.gov</a></li>
+   <li><a href="https://score.org/" target="_blank" rel="noopener">SCORE business mentoring</a></li>
+   <li><a href="https://www.sosnc.gov/" target="_blank" rel="noopener">North Carolina Secretary of State</a></li>
+   <li><a href="https://duckduckgo.com/" target="_blank" rel="noopener">DuckDuckGo search</a></li>
   </ul>
-</section>
-
-<section class="card">
-  <h2>Coming Next: Real AI Advertising</h2>
-  <p>Planned upgrades include AI-generated product images, AI video clips, voiceovers, automatic captions, saved projects, customer accounts and secure payments.</p>
-  <p class="hint">These features require suitable AI services and a secure backend. No payment is collected by this demo.</p>
+ </div>
 </section>
 </main>
-
-<footer>
-  <strong>RoyalSearch1</strong><br>
-  Business Search · Advertising Studio · Creative Planning<br>
-  <span class="hint">Planning tools only. Review advertising claims and permissions before publishing.</span>
-</footer>
+<footer>RoyalSearch1 · Business, Advertising & Creative Studio</footer>
 
 <script>
-let productPhotoUrl = "";
-
-document.getElementById("photo").addEventListener("change", function(){
-  const file = this.files && this.files[0];
-  const img = document.getElementById("photoPreview");
-  if (!file) {
-    img.hidden = true;
-    if (productPhotoUrl) URL.revokeObjectURL(productPhotoUrl);
-    productPhotoUrl = "";
-    return;
-  }
-  if (!file.type.startsWith("image/")) {
-    alert("Please choose an image file.");
-    this.value = "";
-    return;
-  }
-  if (productPhotoUrl) URL.revokeObjectURL(productPhotoUrl);
-  productPhotoUrl = URL.createObjectURL(file);
-  img.src = productPhotoUrl;
-  img.hidden = false;
+const $=id=>document.getElementById(id);
+document.querySelectorAll("nav button").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  button.classList.add("active");
+  $(button.dataset.tab).classList.add("active");
+ });
+});
+function saveText(text){return navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(text).then(()=>alert("Copied.")).catch(()=>alert("Copy was blocked by the browser. Select the output text and copy it manually.")):alert("Select the output text and copy it manually.");}
+$("makeAd").addEventListener("click",()=>{
+ const product=$("product").value.trim()||"Our Featured Product";
+ const url=$("affiliate").value.trim()||"Add your affiliate link before publishing";
+ const audience=$("audience").value.trim()||"people who may benefit from this product";
+ const details=$("details").value.trim()||"Add verified product features and benefits.";
+ const platform=$("platform").value,tone=$("tone").value;
+ const seconds=Number($("duration").value),cta=$("offer").value.trim()||"Learn more today";
+ const scenes=seconds===15?3:seconds===30?5:8;
+ let out=`ROYALSEARCH1 COMMERCIAL PACKAGE\n\nProduct: ${product}\nLink: ${url}\nPlatform: ${platform}\nStyle: ${tone}\nLength: ${seconds} seconds\nTarget audience: ${audience}\n\nSCRIPT\n[Opening hook] Have you been looking for a better way to meet your needs?\n[Introduce product] Discover ${product}.\n[Benefits] ${details}\n[Call to action] ${cta}.\n\nSCENE PLAN\n`;
+ for(let i=1;i<=scenes;i++){
+  const lines=[
+   "Open with a clear visual that captures attention.",
+   `Introduce ${product} with a product photo or demonstration.`,
+   "Show a relevant use case for the target audience.",
+   "Highlight a verified feature or benefit.",
+   `Display the product name and call to action: ${cta}.`
+  ];
+  out+=`Scene ${i}: ${lines[(i-1)%lines.length]}\nVoiceover: ${i===1?"Have you been looking for a better way?":i===scenes?`${cta}.`:`Discover what ${product} may offer. ${details}`}\n\n`;
+ }
+ out+=`SOCIAL CAPTION\nMeet ${product}. Learn more: ${url}\n\nDISCLOSURE REMINDER\nIf you earn a commission from qualifying purchases, clearly disclose your affiliate relationship near your recommendation. Verify every product claim and the link before publishing.\n\nNOTE\nThis tool creates a draft using your inputs; it does not independently verify product claims or import product information from the URL.`;
+ $("adOutput").textContent=out;
+});
+$("copyAd").addEventListener("click",()=>saveText($("adOutput").textContent));
+$("makeMovie").addEventListener("click",()=>{
+ const title=$("movieTitle").value.trim()||"Untitled Movie";
+ const genre=$("genre").value,type=$("movieType").value;
+ const story=$("story").value.trim()||"A main character faces a difficult challenge and must make a meaningful choice.";
+ const characters=$("characters").value.trim()||"Add your character descriptions and dialogue ideas.";
+ const n=Number($("sceneCount").value);
+ let out=`ROYALSEARCH1 STORY DEVELOPMENT\nTitle: ${title}\nGenre: ${genre}\nFormat: ${type}\n\nSTORY PREMISE\n${story}\n\nCHARACTERS AND DIALOGUE NOTES\n${characters}\n\nSCENE-BY-SCENE OUTLINE\n`;
+ const stages=["Opening image: introduce the setting and main character.","Inciting incident: a problem disrupts ordinary life.","First decision: the character chooses a direction.","Complication: an obstacle raises the stakes.","Turning point: a discovery or choice changes the plan.","Midpoint: the character learns what is truly at risk.","Crisis: the plan fails or a difficult choice appears.","Climax: the main conflict reaches its peak.","Resolution: show the consequences of the decision.","Final image: end with a memorable moment."];
+ for(let i=0;i<n;i++)out+=`Scene ${i+1}\nPurpose: ${stages[i%stages.length]}\nVisual: Show the characters and setting through action rather than explanation.\nDialogue prompt: What does the character want in this moment, and what are they afraid to say?\n\n`;
+ out+=`TRAILER STRUCTURE\n1. Establish the world and central character.\n2. Introduce the main conflict.\n3. Increase the tension with short, striking scenes.\n4. End on a question or reveal without giving away the full ending.\n5. Display the title: ${title}.\n\nThis is a development outline, not a finished screenplay or generated movie footage.`;
+ $("movieOutput").textContent=out;
+});
+$("copyMovie").addEventListener("click",()=>saveText($("movieOutput").textContent));
+$("businessPlan").addEventListener("click",()=>{
+ const idea=$("businessIdea").value.trim()||"Your business idea";
+ $("businessOutput").textContent=`BUSINESS PLANNING CHECKLIST: ${idea}\n\n1. Define the customer problem and your proposed solution.\n2. Identify target customers and competitors.\n3. List your products or services and how you will price them.\n4. Estimate startup costs, monthly expenses, and cash needed.\n5. Check licensing, permits, insurance, taxes, and legal requirements.\n6. Select a marketing and customer-acquisition strategy.\n7. Identify free or low-cost business counseling and funding resources.\n8. Test demand before making large purchases.\n9. Track revenue, expenses, cash flow, and profit.\n10. Set a 30-day goal and measure progress.\n\nThis is a planning checklist, not individualized legal, tax, lending, or grant advice.`;
+});
+$("calculate").addEventListener("click",()=>{
+ const revenue=Number($("revenue").value),costs=Number($("costs").value);
+ if(revenue<0||costs<0||!Number.isFinite(revenue)||!Number.isFinite(costs)){
+  $("profitOutput").textContent="Enter valid non-negative amounts.";return;
+ }
+ const profit=revenue-costs,margin=revenue?profit/revenue*100:0;
+ $("profitOutput").textContent=`Revenue: $${revenue.toFixed(2)}\nExpenses: $${costs.toFixed(2)}\n${profit>=0?"Estimated profit":"Estimated loss"}: $${profit.toFixed(2)}\nProfit margin: ${revenue?margin.toFixed(2)+"%":"Not available when revenue is zero"}\n\nThis estimate excludes any expenses you have not entered, including taxes.`;
 });
 
-function val(id) {
-  return document.getElementById(id).value.trim();
+const canvas=$("videoCanvas"),ctx=canvas.getContext("2d");
+let chosenImages=[],imageObjects=[],currentScene=0,recording=false;
+function loadImageFiles(files){
+ chosenImages=Array.from(files||[]).filter(f=>f.type.startsWith("image/"));
+ imageObjects=chosenImages.map(file=>{const img=new Image();img.src=URL.createObjectURL(file);return img;});
+ $("videoStatus").textContent=`${imageObjects.length} image(s) selected. Add captions and preview.`;
 }
-
-function createAd() {
-  const name = val("productName");
-  const description = val("description");
-  if (!name || !description) {
-    alert("Please enter the product or business name and describe what you are promoting.");
-    return;
+$("videoImages").addEventListener("change",e=>loadImageFiles(e.target.files));
+$("adimages").addEventListener("change",e=>{
+ if(e.target.files.length) $("videoStatus").textContent=`${e.target.files.length} commercial image(s) selected in the Commercial Maker. To export a video, select them again in Video Builder.`;
+});
+function captionList(){return $("captions").value.split("\n").map(s=>s.trim()).filter(Boolean);}
+function drawScene(index){
+ ctx.fillStyle="#101d39";ctx.fillRect(0,0,canvas.width,canvas.height);
+ const img=imageObjects[index];
+ if(img&&img.complete&&img.naturalWidth){
+  const scale=Math.max(canvas.width/img.naturalWidth,canvas.height/img.naturalHeight);
+  const w=img.naturalWidth*scale,h=img.naturalHeight*scale;
+  ctx.drawImage(img,(canvas.width-w)/2,(canvas.height-h)/2,w,h);
+  ctx.fillStyle="rgba(0,0,0,.48)";ctx.fillRect(0,canvas.height-210,canvas.width,210);
+ }
+ ctx.fillStyle="#f0b84b";ctx.font="bold 32px Arial";
+ ctx.fillText($("videoTitle").value.trim()||"RoyalSearch1",55,65);
+ ctx.fillStyle="#ffffff";ctx.font="bold 42px Arial";
+ const captions=captionList(),caption=captions[index]||`Scene ${index+1}`;
+ const words=caption.split(/\s+/);let line="",lines=[];
+ words.forEach(word=>{const test=line?line+" "+word:word;if(ctx.measureText(test).width>canvas.width-110){lines.push(line);line=word}else line=test;});
+ if(line)lines.push(line);
+ lines.slice(0,3).forEach((text,i)=>ctx.fillText(text,55,canvas.height-135+i*53));
+ ctx.fillStyle="#ffffff";ctx.font="20px Arial";
+ ctx.fillText(`Scene ${index+1}${imageObjects.length?` / ${imageObjects.length}`:""}`,55,canvas.height-25);
+}
+$("previewVideo").addEventListener("click",()=>{
+ if(!imageObjects.length){$("videoStatus").textContent="First select one or more images.";return;}
+ currentScene=0;drawScene(currentScene);
+ $("videoStatus").textContent="Previewing scene 1. Change the scene by clicking Preview Video again after selecting a different image set.";
+});
+$("exportVideo").addEventListener("click",async()=>{
+ if(recording)return;
+ if(!imageObjects.length){$("videoStatus").textContent="First select one or more images in Video Builder.";return;}
+ if(!canvas.captureStream||!window.MediaRecorder){$("videoStatus").textContent="Video recording is not supported by this browser. Try a recent desktop version of Chrome or Edge.";return;}
+ recording=true;$("exportVideo").disabled=true;
+ try{
+  await Promise.all(imageObjects.map(img=>new Promise(resolve=>{if(img.complete&&img.naturalWidth)return resolve();img.onload=resolve;img.onerror=resolve;})));
+  const seconds=Number($("sceneSeconds").value)||5;
+  const stream=canvas.captureStream(24);
+  const mime=MediaRecorder.isTypeSupported("video/webm;codecs=vp9")?"video/webm;codecs=vp9":"video/webm";
+  const recorder=new MediaRecorder(stream,{mimeType:mime});
+  const chunks=[];
+  recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+  recorder.onerror=()=>{$("videoStatus").textContent="The browser could not finish recording. Try fewer or smaller images.";};
+  const finished=new Promise((resolve,reject)=>{
+   recorder.onstop=()=>resolve();
+   recorder.onerror=()=>reject(new Error("Recording failed"));
+  });
+  recorder.start();
+  for(let i=0;i<imageObjects.length;i++){
+   drawScene(i);$("videoStatus").textContent=`Recording scene ${i+1} of ${imageObjects.length}…`;
+   await new Promise(resolve=>setTimeout(resolve,seconds*1000));
   }
-
-  const url = val("productUrl") || "Not supplied";
-  const category = val("productType");
-  const audience = val("audience") || "Potential customers interested in " + category.toLowerCase();
-  const platform = val("platform");
-  const style = val("adStyle");
-  const seconds = Number(val("adLength"));
-  const offer = description.length > 180 ? description.slice(0,177) + "..." : description;
-
-  const scenes = seconds === 15 ? [
-    ["0–3 sec","HOOK","Open with a visually striking view of " + name + ". Add a short attention-grabbing headline."],
-    ["3–8 sec","PRODUCT","Show the product or service clearly. Communicate its main value: " + offer],
-    ["8–12 sec","BENEFIT","Show how it fits the customer's needs. Use only claims that can be supported."],
-    ["12–15 sec","CALL TO ACTION","Invite viewers to learn more, visit the website or contact the business."]
-  ] : seconds === 30 ? [
-    ["0–4 sec","HOOK","Open with a strong visual and a question or relatable customer need."],
-    ["4–10 sec","INTRODUCTION","Introduce " + name + " and show the product clearly."],
-    ["10–18 sec","DEMONSTRATION","Explain the offer and demonstrate its features: " + offer],
-    ["18–25 sec","VALUE","Connect the product to the audience: " + audience],
-    ["25–30 sec","CALL TO ACTION","Display the brand name, website and one clear next step."]
-  ] : [
-    ["0–5 sec","HOOK","Start with a compelling visual, question or customer problem."],
-    ["5–15 sec","INTRODUCTION","Introduce " + name + " and establish the customer's need."],
-    ["15–30 sec","PRODUCT STORY","Show the product, service or process and explain the offer."],
-    ["30–43 sec","BENEFITS","Show relevant use cases and the value for " + audience + "."],
-    ["43–53 sec","TRUST","Use genuine demonstrations, verified testimonials or substantiated facts."],
-    ["53–60 sec","CALL TO ACTION","Repeat the brand name and direct viewers to the next step."]
-  ];
-
-  let script = "ROYALSEARCH1 — AD CAMPAIGN BRIEF\n\n";
-  script += "Product/business: " + name + "\nCategory: " + category + "\nWebsite: " + url + "\n";
-  script += "Audience: " + audience + "\nPlatform: " + platform + "\nStyle: " + style + "\nLength: " + seconds + " seconds\n\n";
-  script += "CORE MESSAGE\n" + description + "\n\n";
-  script += "HEADLINE IDEAS\n";
-  script += "1. Discover " + name + "\n";
-  script += "2. See what makes " + name + " worth exploring\n";
-  script += "3. Find the right solution for your needs\n\n";
-  script += "VOICEOVER DRAFT\n";
-  script += "“Looking for " + category.toLowerCase() + "? Meet " + name + ". ";
-  script += offer + ". ";
-  script += "Discover more today and see whether it's right for you.”\n\n";
-  script += "SCENE-BY-SCENE PLAN\n";
-  scenes.forEach(s => { script += s[0] + " — " + s[1] + "\n" + s[2] + "\n\n"; });
-  script += "PRODUCTION NOTES\n";
-  script += "• Format: vertical 9:16 for most short-form social ads; confirm each platform's requirements.\n";
-  script += "• Use clear product close-ups, readable captions and good lighting.\n";
-  script += "• Use licensed music and authorized product images.\n";
-  script += "• Verify all prices, product claims, testimonials and offers before publishing.\n";
-  script += "• This is a planning draft generated from your entries, not a live AI-generated video.";
-
-  document.getElementById("adResult").textContent = script;
-}
-
-function clearAd() {
-  ["productUrl","productName","description","audience"].forEach(id => document.getElementById(id).value = "");
-  document.getElementById("photo").value = "";
-  const img = document.getElementById("photoPreview");
-  img.hidden = true;
-  if (productPhotoUrl) URL.revokeObjectURL(productPhotoUrl);
-  productPhotoUrl = "";
-  document.getElementById("adResult").textContent = "Your advertising package will appear here.";
-}
-
-function sendToStoryboard() {
-  const name = val("productName");
-  const description = val("description");
-  if (!name || !description) {
-    alert("Complete the product name and description first.");
-    return;
-  }
-  document.getElementById("filmTitle").value = name + " Commercial";
-  document.getElementById("filmIdea").value = description + "\nTarget audience: " + (val("audience") || "Potential customers") + "\nPlatform: " + val("platform") + "\nStyle: " + val("adStyle");
-  document.getElementById("filmFormat").value = "Product commercial";
-  document.getElementById("storyboard").scrollIntoView({behavior:"smooth"});
-}
-
-function createStoryboard() {
-  const idea = val("filmIdea");
-  if (!idea) {
-    alert("Enter a project concept first.");
-    return;
-  }
-  const title = val("filmTitle") || "Untitled Project";
-  const format = val("filmFormat");
-  const mood = val("filmMood");
-  const text = "ROYALSEARCH1 — STORYBOARD\n\nTITLE: " + title +
-    "\nFORMAT: " + format + "\nVISUAL MOOD: " + mood +
-    "\n\nCONCEPT\n" + idea +
-    "\n\nSCENE 1 — OPENING HOOK\nVisual: Establish the location, subject and mood. Use a strong opening image.\nAudio: Introduce the central idea or question.\n\nSCENE 2 — SETUP\nVisual: Introduce the product, characters, setting or main problem.\nAudio: Establish context and give viewers a reason to continue watching.\n\nSCENE 3 — DEVELOPMENT\nVisual: Show the main action, product demonstration or story development.\nAudio: Advance the message or narrative with clear, concise dialogue.\n\nSCENE 4 — KEY MOMENT\nVisual: Present the most important reveal, benefit, conflict or emotional moment.\nAudio: Emphasize the main takeaway.\n\nSCENE 5 — ENDING\nVisual: Finish with a memorable final image, title or brand card.\nAudio: Close the story or give viewers a clear next step.\n\nPRODUCTION CHECKLIST\n□ Write final dialogue and voiceover.\n□ Plan shots, locations, props and lighting.\n□ Obtain permission for people, locations and images.\n□ Check music and footage licensing.\n□ Plan captions and aspect ratio for the chosen platform.\n□ Review the finished edit for accuracy and quality.\n\nThis is a written storyboard template. It does not generate or render footage.";
-  document.getElementById("filmResult").textContent = text;
-}
-
-function businessHelp() {
-  const task = val("businessTask");
-  if (!task) {
-    alert("Describe the business task you want to work on.");
-    return;
-  }
-  const text = "ROYALSEARCH1 — BUSINESS ACTION PLAN\n\nYOUR GOAL\n" + task +
-    "\n\nSTEP 1 — DEFINE THE CUSTOMER\nIdentify the specific people or businesses most likely to need your offer.\n\nSTEP 2 — CLARIFY THE OFFER\nDescribe the problem you solve, the service or product provided, and your price.\n\nSTEP 3 — CHECK THE MARKET\nResearch competitors, customer demand, and typical pricing. Do not assume sales are guaranteed.\n\nSTEP 4 — CREATE MARKETING MATERIALS\nPrepare a clear offer, a simple landing page, a contact method and an advertisement.\n\nSTEP 5 — FIND CUSTOMERS\nChoose a few appropriate channels, such as direct outreach, local partnerships or social media. Follow each channel's rules.\n\nSTEP 6 — TRACK RESULTS\nRecord inquiries, sales, expenses, customer feedback and repeat business.\n\nNEXT ACTION\nChoose one small task you can complete today. Set a deadline and measure the result.\n\nNote: This is a built-in planning template, not advice generated by a live AI model.";
-  document.getElementById("businessResult").textContent = text;
-}
-
-function calculateProfit() {
-  const sales = Number(val("sales"));
-  const costs = Number(val("costs"));
-  const overhead = Number(val("overhead"));
-  if ([sales,costs,overhead].some(n => !Number.isFinite(n) || n < 0)) {
-    alert("Enter valid non-negative numbers.");
-    return;
-  }
-  const profit = sales - costs - overhead;
-  const margin = sales > 0 ? (profit / sales) * 100 : 0;
-  document.getElementById("profitResult").textContent =
-    "Sales: $" + sales.toFixed(2) +
-    "\nProduct/service costs: $" + costs.toFixed(2) +
-    "\nOther expenses: $" + overhead.toFixed(2) +
-    "\nEstimated profit before any unentered expenses or taxes: $" + profit.toFixed(2) +
-    (sales > 0 ? "\nProfit margin: " + margin.toFixed(1) + "%" : "\nProfit margin: Not available because sales are zero.") +
-    "\n\nThis is an estimate, not a tax or accounting statement.";
-}
-
-function copyResult(id) {
-  const text = document.getElementById(id).innerText;
-  if (!text || text.includes("will appear here")) {
-    alert("Create a result first.");
-    return;
-  }
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text)
-      .then(() => alert("Copied."))
-      .catch(() => window.prompt("Copy the text below:", text));
-  } else {
-    window.prompt("Copy the text below:", text);
-  }
-}
-
-function saveResult(id, filename) {
-  const text = document.getElementById(id).innerText;
-  if (!text || text.includes("will appear here")) {
-    alert("Create a result first.");
-    return;
-  }
-  const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = filename;
-  link.click();
-  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-}
+  recorder.stop();await finished;stream.getTracks().forEach(t=>t.stop());
+  const blob=new Blob(chunks,{type:"video/webm"});
+  if(!blob.size)throw new Error("The video file was empty.");
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="RoyalSearch1-video.webm";document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+  $("videoStatus").textContent="Video created. Check your browser downloads. The video contains visuals and captions, but no embedded voiceover.";
+ }catch(err){$("videoStatus").textContent="Export could not finish: "+err.message+". Try fewer images or shorter scenes.";}
+ finally{recording=false;$("exportVideo").disabled=false;}
+});
+$("speakVideo").addEventListener("click",()=>{
+ if(!("speechSynthesis" in window)){ $("videoStatus").textContent="Browser speech is not supported here.";return;}
+ const text=$("voiceText").value==="title"?$("videoTitle").value:captionList().join(". ");
+ if(!text.trim()){$("videoStatus").textContent="Add a title or captions before starting voiceover.";return;}
+ speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);
+ utterance.onstart=()=>{$("videoStatus").textContent="Browser voiceover playing.";};
+ utterance.onend=()=>{$("videoStatus").textContent="Voiceover finished. It is not embedded in the exported video.";};
+ speechSynthesis.speak(utterance);
+});
+$("stopVoice").addEventListener("click",()=>{if("speechSynthesis" in window)speechSynthesis.cancel();$("videoStatus").textContent="Voiceover stopped.";});
+drawScene(0);
 </script>
 </body>
 </html>
