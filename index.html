@@ -62,6 +62,59 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
   <button data-page="business" onclick="showPage('business',this)">Business Tools</button>
 </nav>
 
+<section class="page" id="royal-ai">
+  <div class="card">
+    <h2>RoyalSearch1 AI Business Assistant</h2>
+    <p>Ask for help with business plans, startup costs, marketing, customers, and business growth.</p>
+
+    <label for="royalAiQuestion">What would you like help with?</label>
+    <textarea id="royalAiQuestion" rows="5" placeholder="Example: Help me create a low-cost business plan for a box-truck company."></textarea>
+
+    <button type="button" onclick="askRoyalAI()">Ask Royal AI</button>
+
+    <p id="royalAiStatus" role="status"></p>
+    <div id="royalAiAnswer" style="white-space:pre-wrap;"></div>
+  </div>
+</section>
+
+<script>
+async function askRoyalAI() {
+  const question = document.getElementById("royalAiQuestion").value.trim();
+  const status = document.getElementById("royalAiStatus");
+  const answer = document.getElementById("royalAiAnswer");
+
+  if (!question) {
+    status.textContent = "Please enter a question first.";
+    return;
+  }
+
+  status.textContent = "Royal AI is working...";
+  answer.textContent = "";
+
+  try {
+    const response = await fetch(
+      "https://royalsearch1-ai.jefferodaniel2.workers.dev/",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: question })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || data.error) {
+      throw new Error(data.error || "The AI request failed.");
+    }
+
+    answer.textContent = data.answer || "No answer was returned.";
+    status.textContent = "Response received.";
+  } catch (error) {
+    status.textContent = "The AI could not respond: " + error.message;
+  }
+}
+</script>
+
 <main>
 <section class="page active" id="home">
   <div class="hero">
